@@ -11,10 +11,20 @@ fi
 echo $PWD
 
 # Activate the virtual environment
-source env/bin/activate
+if [ -f "env/bin/activate" ]; then
+    source env/bin/activate
+else
+    echo "Failed to activate virtual environment"
+    exit 1
+fi
 
 # Install the required Python packages
-pip install -r requirements.txt
+if command -v pip &> /dev/null; then
+    pip install -r requirements.txt
+else
+    echo "pip not found"
+    exit 1
+fi
 
 # Check if the logs directory exists
 if [ -d "logs" ]; then
@@ -25,6 +35,6 @@ else
 fi
 
 # Change permissions for the logs directory
-sudo chmod -R 777 logs
+chmod -R 777 logs
 
 echo "envsetup finishes"
