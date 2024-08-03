@@ -93,14 +93,13 @@ Local pc
         pipeline{
             agent any
             stages {
-            
-                stage('Setup Python Virtual ENV for dependencies'){
-            
-            steps  {
-                    sh '''
-                    chmod +x envsetup.sh
-                    ./envsetup.sh
-                    '''}
+                stage('Setup Python Virtual ENV'){
+                    steps {
+                        sh '''
+                        chmod +x envsetup.sh
+                        ./envsetup.sh
+                        '''
+                    }
                 }
                 stage('Setup Gunicorn Setup'){
                     steps {
@@ -121,5 +120,5 @@ Local pc
             }
         }
     6 -  Commit this first to use url
-    7 - Go to jenkins website > Click on New item select pipeline click ok > select Discard old build > Change pipiline(Defition) from Pipeline script to pipeline script from SCM > change SCM None to Git > Repositry Url with commit
+    7 - Go to jenkins website > Click on New item select pipeline click ok > select Discard old build > Change pipiline(Defition) from Pipeline script to pipeline script from SCM > change SCM None to Git > Repositry Url with main url not (git clone url) > Change Branch Specifier to your commit branch, if it's master then */master
      - create gunicorn.sh file and code are
